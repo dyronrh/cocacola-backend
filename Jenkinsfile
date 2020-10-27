@@ -19,9 +19,9 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
+                   echo 'Building docker image' 
                    sh 'docker build -t cocacola-backend:1.1.1 .'
-                }
+                
             }
         }
         stage('Push Docker Image') {
