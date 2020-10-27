@@ -7,24 +7,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import encuesta.cocacola.model.Encuesta;
 import encuesta.cocacola.repository.EncuestaRepository;
-import encuesta.cocacola.service.EncuestaService;
 
 @SpringBootTest
 class EncuestaServiceUnitTest {
 
-    @Autowired
-    private EncuestaService encuestaService;
     
     @MockBean
     private EncuestaRepository encuestaRepository;
     
-    private static final int TOTAL_ENCUESTAS = 6;
     private static final List<String> PERMITIDOS_TIPOS = new ArrayList<>( 
             List.of("Light", "Sin azúcar", "normal","no tomo")); 
   
