@@ -1,25 +1,20 @@
 package encuestacocacola;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import encuesta.cocacola.model.Encuesta;
 import encuesta.cocacola.repository.EncuestaRepository;
 import encuesta.cocacola.service.EncuestaService;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 class EncuestaServiceUnitTest {
 
@@ -34,7 +29,7 @@ class EncuestaServiceUnitTest {
             List.of("Light", "Sin azúcar", "normal","no tomo")); 
   
     
-    @Before
+    @BeforeEach
     public void init() {
 
     	encuestaRepository.deleteAll();
@@ -49,13 +44,7 @@ class EncuestaServiceUnitTest {
 
 
 
-    @Test
-    public void listarEncuestas() {
 
-        var encuestas = encuestaRepository.findAll();
-        assertEquals(TOTAL_ENCUESTAS, encuestas.size());
-    }
-    
     @Test
     public void verificarEmailEncuesta() {
         Encuesta encuesta = encuestaRepository.save(new Encuesta("7","correo7@gmail.com", "Original"));
