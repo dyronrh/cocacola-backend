@@ -1,10 +1,15 @@
 pipeline {
-    agent any
-    environment {
-        //be sure to replace "felipelujan" with your own Docker Hub username
-        //changesss
-        DOCKER_IMAGE_NAME = "dyronrh/cocacola-backend"
+    environment { 
+
+        registry = "dyronrh/cocacola-backend" 
+
+        registryCredential = 'docker_hub_login' 
+
+        dockerImage = '' 
+
     }
+
+    agent any
     stages {
          stage('Build') {	
              steps {	
@@ -19,7 +24,11 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh 'docker build -t ${DOCKER_IMAGE_NAME}:1.1.1 .'
+               script { 
+
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+
+                }
             }
         }
         stage('Push Docker Image') {
