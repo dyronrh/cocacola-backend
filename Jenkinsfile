@@ -19,9 +19,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-                }
+                sh 'docker build -t ${DOCKER_IMAGE_NAME}:1.1.1 .'
             }
         }
         stage('Push Docker Image') {
