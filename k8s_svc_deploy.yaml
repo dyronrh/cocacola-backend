@@ -1,14 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: react-service-deployment
+  name: cocacola-backend-deployment
 spec:
   type: NodePort
   selector:
-    app: react-service
+    app: cocacola-backend
   ports:
   - protocol: TCP
-    port: 8080
+    port: 8084
     nodePort: 31000
 
 ---
@@ -16,21 +16,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-service-deployment
+  name: cocacola-backend-deployment
   labels:
-    app: react-service
+    app: cocacola-backend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: react-service
+      app: cocacola-backend
   template:
     metadata:
       labels:
-        app: react-service
+        app: cocacola-backend
     spec:
       containers:
-      - name: react-service
+      - name: cocacola-backend
         image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
         ports:
         - containerPort: 8080
